@@ -14,9 +14,13 @@ function emitirConteudo(dados) {
   socket.emit("texto_editor", dados);
 }
 
+function emitirExcluirDocumento(nome) {
+  socket.emit("excluir_documento", nome)
+}
+
 // recebe do servidor um texto e atualizar o text editor
 socket.on("texto_editor_clientes", (texto) => {
   atualizaTextoEditor(texto);
 });
 
-export { emitirConteudo, selecionarDocumento };
+export { emitirConteudo, selecionarDocumento, emitirExcluirDocumento };

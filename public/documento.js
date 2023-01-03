@@ -1,5 +1,6 @@
 import {
   emitirConteudo,
+  emitirExcluirDocumento,
   selecionarDocumento,
 } from "./socket-front-documento.js";
 
@@ -10,6 +11,8 @@ const nomeDocumento = parametros.get("nome");
 // atribui o titulo da page html com o nome do documento
 const editorTexto = document.getElementById("editor-texto");
 const tituloDocumento = document.getElementById("titulo-documento");
+const excluirDocumento = document.getElementById("excluir-documento")
+
 tituloDocumento.textContent = nomeDocumento || "Documento sem título";
 
 //Emiti sinal com o nome do documento para abrir uma sala
@@ -22,6 +25,10 @@ editorTexto.addEventListener("keyup", () => {
     texto: editorTexto.value,
   });
 });
+
+excluirDocumento.addEventListener("click", () => {
+  emitirExcluirDocumento(nomeDocumento);
+})
 
 //vai receber o conteudo emitido pelo servidor e atualizar o text editor
 function atualizaTextoEditor(texto) {
